@@ -2,8 +2,8 @@ import axios from 'axios'
 import { logoutUserSession, refreshUserSession, unauthorizedResourceAccessedByUser } from './util/auth';
 
 const api = axios.create({
-    baseURL: 'http://allowit-app-06.gearhostpreview.com/',
-   //baseURL: 'http://localhost:9094/'
+   // baseURL: 'http://allowit-app-06.gearhostpreview.com/',
+   baseURL: 'http://localhost:9094/'
 })
 
 //Intercept Response Errors
