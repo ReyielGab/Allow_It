@@ -3,11 +3,13 @@ import Radium, { StyleRoot } from 'radium';
 
 import UserListContainer from '../../users/list/container/list';
 
+import UserInfoContainer from '../../userinfo/list/container/list';
+
+import LoginContainer from '../../login/container/login';
+
 import colorPallete from '../../../util/styles/color-pallete';
 
-const styles = {
 
-};
 
 @Radium
 class Main extends React.Component {
@@ -17,9 +19,18 @@ class Main extends React.Component {
     render() {
 
         return (
-            <StyleRoot>
+            <StyleRoot >
                 <div>
-                    <UserListContainer />
+                    {/* <span style={{
+                        fontFamily: 'Brandon Grotesque', color: colorPallete.baseFontColor,
+                        fontSize: '40px', textAlign: 'left', paddingLeft: '30px'
+                    }}>ALLOWIT</span> */}
+                   
+                   <UserInfoContainer />
+
+                    {/* <LoginContainer /> */}
+
+                     {/* <UserListContainer /> */}
                 </div>
             </StyleRoot>
         )

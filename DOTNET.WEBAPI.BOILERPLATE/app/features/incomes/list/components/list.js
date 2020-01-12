@@ -65,7 +65,7 @@ class IncomeList extends React.Component {
     }
 
     onBack() {
-        browserHistory.push('/');
+        browserHistory.push('/users');
     }
 
     onCloseBasicDialog() {
@@ -203,7 +203,7 @@ class IncomeList extends React.Component {
 
                     <FloatingActionButton
                         title="Add Income"
-                        secondary={true}
+                        backgroundColor={colorPallete.baseColor}
                         style={{ marginRight: '10px' }}
                         onTouchTap={this.onOpenNewIncomeDialog.bind(this)}
                     >

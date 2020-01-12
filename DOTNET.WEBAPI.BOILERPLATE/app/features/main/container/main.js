@@ -8,9 +8,7 @@ import Radium, { StyleRoot } from 'radium';
 import Main from '../components/main';
 import Subheader from '../../../shared-components/subheader';
 
-const styles = {
 
-};
 
 @connect(
     (state) => state.mainPageReducer,
@@ -27,12 +25,12 @@ class MainContainer extends React.Component {
     }
 
     render() {
-
+        console.log(this.props, 'main');
         return (
             <StyleRoot>
                 <div>
-                    <Subheader />
-                <Main />
+                    {/* <Subheader /> */}
+                    <Main />
                 </div>
                
 

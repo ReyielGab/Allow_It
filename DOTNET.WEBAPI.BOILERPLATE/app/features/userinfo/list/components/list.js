@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium, { StyleRoot } from 'radium';
 
-import UserListItem from './list-items';
+import UserInfoListItem from './list-items';
 
 // * material-ui
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -13,15 +13,13 @@ import BasicDialog from '../../../../shared-components/basic-dialog';
 import MonthPicker from '../../../../shared-components/custom-component/month-picker';
 import colorPallete from '../../../../util/styles/color-pallete'
 
-
-import UserNewContainer from '../../new/container/new';
-import UserEditContainer from '../../edit/container/edit';
-import { EventEmitter } from 'events';
+import UserInfoNew from '../../new/container/new';
+// import UserEditContainer from '../../edit/container/edit';
 
 const styles = {    
     header: {
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'flex-end'
     },
     headerText: {
         color: colorPallete.primaryTextColor,
@@ -49,14 +47,14 @@ const basicDialogOpts = {
 
 
 @Radium
-class UsersList extends React.Component {
+class UserInfoList extends React.Component {
     constructor(props) {
         super(props);
 
         const d = new Date();
 
         this.state = {
-            openNewUserDialog: false,
+           // openNewUserDialog: false,
             openEditUserDialog: false,
             selectedUser: null,
             basicDialogOpts: basicDialogOpts,
@@ -64,29 +62,49 @@ class UsersList extends React.Component {
         }
     }
 
+    // componentDidUpdate(prevProps) {
+    //     const { userInfo } = this.props;
+    //     if(!userInfo.firstname) {
+    //         this.setState({
+    //             openNewUserDialog: true
+    //         })
+    //     }
+    // }
+
     onDisplayListOfUsers() {
-        const { usersList } = this.props;
-        return usersList.map((user, index) => (
-            <UserListItem
-                key={index}
-                user={user}
-                openEditUserDialog={this.onOpenEditUserDialog.bind(this)}
-                openDeleteUserDialog={this.onOpenDeleteUserDialog.bind(this)}
-            />
-        ))
+        const { userInfo } = this.props;
+        console.log(userInfo, 'display');
+
+        if(!userInfo) {
+            return <div style={styles.loadingStyle}> <CircularProgress size={80} thickness={5} /> </div>
+        }
+        else {
+          return  <UserInfoListItem
+                    user={userInfo}
+                  />
+        }
+            
+        // return userInfo.map((user, index) => (
+        //     <UserInfoListItem
+        //         key={index}
+        //         user={user}
+        //         openEditUserDialog={this.onOpenEditUserDialog.bind(this)}
+        //         openDeleteUserDialog={this.onOpenDeleteUserDialog.bind(this)}
+        //     />
+        // ))
     }
 
-    onOpenNewUserDialog() {
-        this.setState({
-            openNewUserDialog: true
-        });
-    }
+    // onOpenNewUserDialog() {
+    //     this.setState({
+    //         openNewUserDialog: true
+    //     });
+    // }
 
-    onCloseNewUserDialog() {
-        this.setState({
-            openNewUserDialog: false
-        })
-    }
+    // onCloseNewUserDialog() {
+    //     this.setState({
+    //         openNewUserDialog: false
+    //     })
+    // }
 
     onOpenEditUserDialog(selectedUser) {
         this.setState({
@@ -142,13 +160,13 @@ class UsersList extends React.Component {
 
     onSamp(event, month) {
         event.preventDefault();
-        const { getUserListFiteredByMonth } = this.props;
+        const { getUserListFiteredByMonth, userInfo } = this.props;
 
         var getSelectedMonth = month + 1;
 
         var selectedMonth = new Date(getSelectedMonth.toString());
 
-        getUserListFiteredByMonth(selectedMonth);
+        getUserListFiteredByMonth(selectedMonth, userInfo.id);
 
         this.setState({
             monthValue: month
@@ -156,11 +174,11 @@ class UsersList extends React.Component {
     }
 
     render() {
-        const { usersList, userListRequestPending } = this.props;
+        const { userInfo, userListRequestPending, isNewUser } = this.props;
         return (
             <StyleRoot>
                 <div style={styles.header}>
-                    <label style={styles.headerText}> List of Users </label>
+                    {/* <label style={styles.headerText}> List of Users </label> */}
 
                     <div style={{ display: 'flex' }}>
                         <div>
@@ -171,17 +189,19 @@ class UsersList extends React.Component {
                         </div>
 
                         <div>
-                            <FloatingActionButton title="ADD NEW USER" backgroundColor={colorPallete.baseColor} style={{ marginRight: '10px' }} onTouchTap={this.onOpenNewUserDialog.bind(this)}>
+                            {/* <FloatingActionButton title="ADD NEW USER" backgroundColor={colorPallete.baseColor} style={{ marginRight: '10px' }} 
+                            // onTouchTap={this.onOpenNewUserDialog.bind(this)}
+                            >
                                 <ContentAdd />
-                            </FloatingActionButton>
+                            </FloatingActionButton> */}
                         </div>
                     </div>
               
 
                 </div>
-                <div style={{ width: '100%' }}>
+                {/* <div style={{ width: '100%' }}>
                     <span style={{ marginLeft: '10px' }}> Total of {usersList.length} User/s </span>
-                </div>
+                </div> */}
 
                 <Table>
                     <TableHeader
@@ -189,8 +209,8 @@ class UsersList extends React.Component {
                         displaySelectAll={false}>
                         <TableRow>
                             {/* <TableHeaderColumn>ID</TableHeaderColumn> */}
-                            <TableHeaderColumn>FULL NAME</TableHeaderColumn>
-                            <TableHeaderColumn>AGE</TableHeaderColumn>
+                            {/* <TableHeaderColumn>FULL NAME</TableHeaderColumn>
+                            <TableHeaderColumn>AGE</TableHeaderColumn> */}
                             <TableHeaderColumn>INCOME</TableHeaderColumn>
                             <TableHeaderColumn>EXPENSE</TableHeaderColumn>
                             <TableHeaderColumn>BALANCE</TableHeaderColumn>
@@ -204,8 +224,9 @@ class UsersList extends React.Component {
                     <TableBody
                         showRowHover={true}
                         displayRowCheckbox={false}>
-                            {/* { this.onDisplayListOfUsers() } */}
-                        {!userListRequestPending ? this.onDisplayListOfUsers() : <div style={styles.loadingStyle}> <CircularProgress size={80} thickness={5} /> </div> }
+                          
+                            { this.onDisplayListOfUsers() }
+                        {/* {!userListRequestPending ? this.onDisplayListOfUsers() : <div style={styles.loadingStyle}> <CircularProgress size={80} thickness={5} /> </div> } */}
 
                     </TableBody>
                 </Table>
@@ -218,14 +239,15 @@ class UsersList extends React.Component {
                 />   
 
                 {/* New User */}
-                <UserNewContainer
-                    openDialog={this.state.openNewUserDialog}
-                    closeDialog={this.onCloseNewUserDialog.bind(this)}
+                <UserInfoNew
+                    openDialog={isNewUser}
+                    // closeDialog={this.onCloseNewUserDialog.bind(this)}
+                    userInfo={userInfo}
                 />
 
                 {/* Edit User */}
 
-               { 
+               {/* { 
                    this.state.selectedUser != null ?
                <UserEditContainer
                     openDialog={this.state.openEditUserDialog}
@@ -233,7 +255,7 @@ class UsersList extends React.Component {
                     selectedUser={this.state.selectedUser}
                 />
                 :null
-                }
+                } */}
 
 
             </StyleRoot>
@@ -241,4 +263,4 @@ class UsersList extends React.Component {
     }
 }
 
-export default UsersList;
+export default UserInfoList;

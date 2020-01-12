@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 
 import UsersList from '../components/list'
 import * as duck from '../duck';
+import Subheader from '../../../../shared-components/subheader';
 
 const styles = {
 
@@ -32,6 +33,7 @@ class UsersListContainer extends React.Component {
         const { usersList, userListRequestPending, actions: { deleteSelectedUser, getUserListFiteredByMonth } } = this.props;
         return (
             <StyleRoot>
+                <Subheader />
                 <div style={{marginTop: '36px'}}>                    
                                
                     <UsersList

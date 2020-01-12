@@ -67,7 +67,8 @@ class ExpenseList extends React.Component {
     }
 
     onBack() {
-        browserHistory.push('/');
+        const { user } = this.props;
+        browserHistory.push(`/users/${user.id}`);
     }
 
     onOpenAddExpenseDialog() {
@@ -186,7 +187,7 @@ class ExpenseList extends React.Component {
 
                     <FloatingActionButton 
                     title="ADD EXPENSE"
-                    secondary={true} 
+                    backgroundColor={colorPallete.baseColor}
                     style={{ marginRight: '10px' }} 
                     onTouchTap={this.onOpenAddExpenseDialog.bind(this)}
                     >

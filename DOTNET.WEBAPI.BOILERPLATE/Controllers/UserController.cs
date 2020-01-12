@@ -72,5 +72,57 @@ namespace DOTNET.WEBAPI.BOILERPLATE.Controllers
             return Ok(response.Data);
         }
 
+
+        [HttpPost]
+        [Route("SignUpNewUser")]
+        [ResponseType(typeof(bool))]
+        public IHttpActionResult SignUpNewUser([FromBody] SignUpNewUserCommand command)
+        {
+            var response = _mediator.Request(command);
+
+            return Created("", response.Data);
+        }
+
+        [HttpGet]
+        [Route("CheckIfUserExist")]
+        [ResponseType(typeof(UserDto))]
+        public IHttpActionResult GetUserInfo([FromUri] CheckIfUserExistQuery query)
+        {
+            var response = _mediator.Request(query);
+
+            return Ok(response.Data);
+        }
+
+        [HttpGet]
+        [Route("GetUserInfoById")]
+        [ResponseType(typeof(UserDto))]
+        public IHttpActionResult GetUserInfoById([FromUri] GetUserInfoByIdQuery query)
+        {
+            var response = _mediator.Request(query);
+
+            return Ok(response.Data);
+        }
+
+        [HttpPost]
+        [Route("NewUserInfo")]
+        [ResponseType(typeof(UserDto))]
+        public IHttpActionResult NewUserInfo([FromBody] NewUserInfoCommand command)
+        {
+            var response = _mediator.Request(command);
+
+            return Created("", response.Data);
+        }
+
+        [HttpPost]
+        [Route("GetAllUserInfoByMonth")]
+        [ResponseType(typeof(UserDto))]
+        public IHttpActionResult GetAllUserInfoByMonth([FromBody] GetAllUserInfoByMonthQuery query)
+        {
+            var response = _mediator.Request(query);
+
+            return Ok(response.Data);
+        }
+
+
     }
 }

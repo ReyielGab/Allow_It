@@ -15,5 +15,7 @@ namespace DOTNET.WEBAPI.BOILERPLATE.DOMAIN
         public List<Expense> Expenses { get; set; }
         public List<Income> Income { get; set; }
         public List<Balance> Balances { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
     }
 }

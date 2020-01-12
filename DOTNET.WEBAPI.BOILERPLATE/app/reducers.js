@@ -20,6 +20,11 @@ import incomeListReducer from './features/incomes/list/duck';
 import incomeNewReducer from './features/incomes/new/duck';
 import editIncomeReducer from './features/incomes/edit/duck';
 
+import loginReducer from './features/login/duck';
+
+import userInfoReducer from './features/userinfo/list/duck';
+import userInfoNewReducer from './features/userinfo/new/duck';
+
 
 const appReducer = combineReducers({
     form,
@@ -35,7 +40,10 @@ const appReducer = combineReducers({
     expenseNewReducer,
     incomeListReducer,
     incomeNewReducer,
-    editIncomeReducer
+    editIncomeReducer,
+    loginReducer,
+    userInfoReducer,
+    userInfoNewReducer
 });
 
 const rootReducer = (state, action) => {

@@ -9,6 +9,10 @@ import UsersListContainer from './features/users/list/container/list';
 import ExpenseListContainer from './features/expenses/list/container/list';
 import IncomeListContainer from './features/incomes/list/container/list';
 
+import LoginContainer from './features/login/container/login';
+
+import UserInfoContainer from './features/userinfo/list/container/list';
+
 
 import { syncHistoryWithStore } from 'react-router-redux'
 import store from './store';
@@ -20,10 +24,15 @@ export default () => {
     return (
         <Router history={history}>
 
-            <Route path="/" component={MainContainer}>
-                <IndexRoute component={UsersListContainer} />
-            </Route>
-
+            {/* <Route path="/" component={MainContainer}> */}
+            <Route path="/" component={LoginContainer}>
+                {/* <IndexRoute component={LoginContainer} /> */}
+                <IndexRoute component={MainContainer} />
+               
+            </Route>            
+            
+            <Route path="/users/:id" component={UserInfoContainer}/>
+            {/* <Route path="/users/:id" component={UsersListContainer}/> */}
             {/* <Route path="/view-todos/:id" component={TodoListContainer} /> */}
             <Route path="/view-expense/:id" component={ExpenseListContainer}/>
             <Route path="/view-income/:id" component={IncomeListContainer} />

@@ -12,7 +12,7 @@
     "test": "mocha --require ./test-setup.js --compilers babel-core/register ./app/**/*.spec.js",
     "test:watch": "npm test -- -w"
   },
-  "author": "LoRey <junlouie.gonzales@gmail.com> <reyiel0528@gmail.com>",
+  "author": " <reyiel0528@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.15.3",
