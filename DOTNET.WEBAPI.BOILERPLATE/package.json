@@ -15,7 +15,7 @@
   "author": "LoRey <junlouie.gonzales@gmail.com> <reyiel0528@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.21.1",
     "lodash": "^4.17.4",
     "moment": "^2.17.1",
     "react": "^15.4.1",
